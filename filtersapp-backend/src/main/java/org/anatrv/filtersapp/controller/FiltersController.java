@@ -20,7 +20,7 @@ public class FiltersController {
     private FilterService filterService;
 
     @GetMapping
-    public Collection<Filter> getAll() {
+    public Iterable<Filter> getAll() {
         return filterService.getAllFilters();
     }
 

@@ -20,7 +20,7 @@ insert into Condition (id, rule) values
 (7, 'From'),
 (8, 'Before');
 
-insert into Property_Condition (id, property_id, contidion_id) values 
+insert into Property_Condition (id, property_id, condition_id) values 
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
@@ -41,7 +41,7 @@ insert into Fields_Group (id, filter_id, name) values
 (2, 1, 'Arrival date criteria'),
 (3, 2, 'Mixed criteria');
 
-insert into Field (fields_group_id, property_condition_id, value_) values
+insert into Field (group_id, property_condition_id, value_) values
 (1, 1, '15'),
 (1, 3, '15'),
 (2, 9, '23.03.2023'),
