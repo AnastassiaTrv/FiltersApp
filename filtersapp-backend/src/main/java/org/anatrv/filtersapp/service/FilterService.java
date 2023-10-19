@@ -1,6 +1,7 @@
 package org.anatrv.filtersapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.anatrv.filtersapp.model.Filter;
 import org.anatrv.filtersapp.repository.FilterRepository;
@@ -15,6 +16,10 @@ public class FilterService {
 
     public List<Filter> getAllFilters() {
         return filterRepository.findAll();
+    }
+
+    public Optional<Filter> getOneById(Integer id) {
+        return filterRepository.findById(id);
     }
     
 }

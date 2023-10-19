@@ -3,12 +3,14 @@ package org.anatrv.filtersapp.controller;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.anatrv.filtersapp.exception.ResourceNotFoundException;
 import org.anatrv.filtersapp.model.Filter;
 import org.anatrv.filtersapp.model.dto.FilterDto;
 import org.anatrv.filtersapp.service.FilterService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,8 +35,11 @@ public class FiltersController {
         .collect(Collectors.toList());
     }
 
-    public Filter getById(Integer id) {
-        return null;
+    @GetMapping("/{id}")
+    public FilterDto getById(@PathVariable("id") Integer id) {
+        return filterService.getOneById(id)
+        .map(this::convertToDto)
+        .orElseThrow( () -> new ResourceNotFoundException());
     }
 
     public Integer create(Filter filter) {
