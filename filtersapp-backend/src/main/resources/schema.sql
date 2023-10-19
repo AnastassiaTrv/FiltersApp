@@ -1,20 +1,22 @@
 create table if not exists Filter (
     id identity,
-    name varchar(50) not null,
-    static_field varchar(50) not null
-);
-
-create table if not exists Fields_Group (
-    id identity,
-    filter_id bigint not null,
-    name varchar(50) not null
+    description varchar(50) null
 );
 
 create table if not exists Field (
     id identity,
     group_id bigint not null,
-    property_condition_id bigint not null,
-    value_ varchar(50)
+    name varchar(50) not null,
+    type ENUM('text', 'selection', 'multi_value'),
+    required boolean not null default false
+);
+
+create table if not exists Filter_Field (
+    id identity,
+    filter_id bigint not null,
+    field_id bigint not null,
+    property_condition_id bigint null,
+    value_ varchar(50) null
 );
 
 create table if not exists Property (
@@ -34,8 +36,8 @@ create table if not exists Property_Condition (
     condition_id bigint not null
 );
 
-alter table Fields_Group add foreign key (filter_id) references Filter(id);
-alter table Field add foreign key (group_id) references Fields_Group(id);
-alter table Field add foreign key (property_condition_id) references Property_Condition(id);
+alter table Filter_Field add foreign key (filter_id) references Filter(id);
+alter table Filter_Field add foreign key (field_id) references Field(id);
+alter table Filter_Field add foreign key (property_condition_id) references Property_Condition(id);
 alter table Property_Condition add foreign key (property_id) references Property(id);
 alter table Property_Condition add foreign key (condition_id) references Condition(id);

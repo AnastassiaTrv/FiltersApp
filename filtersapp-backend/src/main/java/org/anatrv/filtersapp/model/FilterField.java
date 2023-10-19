@@ -1,25 +1,26 @@
 package org.anatrv.filtersapp.model;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
 @Entity
-public class Filter {
+public class FilterField {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    private String value_;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "filterId")
-    private Collection<FilterField> fields = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name = "fieldId")
+    private Field fieldMetadata;
+
+    @ManyToOne
+    @JoinColumn(name = "propertyCondition_id")
+    private PropertyCondition propertyCondition;
 }
