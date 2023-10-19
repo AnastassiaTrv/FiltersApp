@@ -1,5 +1,7 @@
 package org.anatrv.filtersapp.service;
 
+import java.util.List;
+
 import org.anatrv.filtersapp.model.Filter;
 import org.anatrv.filtersapp.repository.FilterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,7 @@ public class FilterService {
     @Autowired
     private FilterRepository filterRepository;
 
-    public Iterable<Filter> getAllFilters() {
+    public List<Filter> getAllFilters() {
         return filterRepository.findAll();
     }
     

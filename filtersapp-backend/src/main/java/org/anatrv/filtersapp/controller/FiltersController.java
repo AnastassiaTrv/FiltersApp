@@ -1,9 +1,12 @@
 package org.anatrv.filtersapp.controller;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.anatrv.filtersapp.model.Filter;
+import org.anatrv.filtersapp.model.dto.FilterDto;
 import org.anatrv.filtersapp.service.FilterService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +22,15 @@ public class FiltersController {
     @Autowired
     private FilterService filterService;
 
+    @Autowired
+    private ModelMapper mapper;
+
     @GetMapping
-    public Iterable<Filter> getAll() {
-        return filterService.getAllFilters();
+    public List<FilterDto> getAll() {
+        return filterService.getAllFilters()
+        .stream()
+        .map(this::convertToDto)
+        .collect(Collectors.toList());
     }
 
     public Filter getById(Integer id) {
@@ -38,6 +47,10 @@ public class FiltersController {
 
     public void deleteById(Integer id) {
 
+    }
+
+    private FilterDto convertToDto(Filter filter) {
+        return mapper.map(filter, FilterDto.class);
     }
 
 }

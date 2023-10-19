@@ -19,6 +19,8 @@ public class Filter {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    private String description;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "filterId")
     private Collection<FilterField> fields = new ArrayList<>();
