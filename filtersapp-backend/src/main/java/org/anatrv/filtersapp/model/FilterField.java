@@ -17,8 +17,8 @@ public class FilterField {
     private String value_;
 
     @ManyToOne
-    @JoinColumn(name = "fieldId")
-    private Field fieldMetadata;
+    @JoinColumn(name = "metadataId")
+    private FieldMetadata fieldMetadata;
 
     @ManyToOne
     @JoinColumn(name = "propertyCondition_id")

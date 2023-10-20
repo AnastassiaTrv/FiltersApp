@@ -1,5 +1,5 @@
 delete from Filter;
-delete from Field;
+delete from Field_Metadata;
 delete from Filter_Field;
 delete from Property;
 delete from Condition;
@@ -36,14 +36,14 @@ insert into Filter (id, description) values
 (1, 'Any description ..'),
 (2, 'Any other description ..');
 
-insert into Field (id, group_id, name, type) values
+insert into Field_Metadata (id, group_id, name, type) values
 (1, 1, 'Name', 'text'),
 (2, 1, 'Criteria', 'multi_value'),
 (3, 1, 'Selection', 'selection'),
 (4, 2, 'List', 'multi_value'),
 (5, 2, 'Title', 'text');
 
-insert into Filter_Field (id, filter_id, field_id, property_condition_id, value_) values
+insert into Filter_Field (id, filter_id, metadata_id, property_condition_id, value_) values
 (1, 1, 1, null, 'Test filter one'),
 (2, 1, 2, 1, '15'),
 (3, 1, 2, 3, '15'),

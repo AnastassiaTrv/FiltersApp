@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Field {
+public class FieldMetadata {
     @Id
     private Integer id;
     private String name;
