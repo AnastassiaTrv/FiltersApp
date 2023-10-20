@@ -1,11 +1,10 @@
 package org.anatrv.filtersapp;
 
-import org.anatrv.filtersapp.model.Filter;
 import org.anatrv.filtersapp.model.FilterField;
 import org.anatrv.filtersapp.model.dto.FieldDto;
-import org.anatrv.filtersapp.model.dto.FilterDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -20,27 +19,21 @@ public class FiltersappApplication {
     @Bean
     ModelMapper modelMapper() {
 		ModelMapper modelMapper = new ModelMapper();
-		TypeMap<FilterField, FieldDto> fieldMap = modelMapper.createTypeMap(FilterField.class, FieldDto.class);
-		
-		fieldMap.addMappings(mapper -> {
-			mapper.map(src -> src.getFieldMetadata().getName(), FieldDto::setName);
-			mapper.map(src -> src.getFieldMetadata().getRequired(), FieldDto::setRequired);
-			mapper.map(src -> src.getFieldMetadata().getType(), FieldDto::setType);
+		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+		// Field entity to FieldDto type map
+		modelMapper.createTypeMap(FilterField.class, FieldDto.class).addMappings(mapper -> {
+			mapper.map(src -> src.getFieldMetadata().getId(), FieldDto::setKey);
 			mapper.map(src -> src.getPropertyCondition().getPropertyId(), FieldDto::setPropertyId);
 			mapper.map(src -> src.getPropertyCondition().getConditionId(), FieldDto::setConditionId);
+			mapper.map(src -> src.getFieldMetadata().getName(), FieldDto::setName);
 		});
 
-		TypeMap<Filter, FilterDto> filterMap = modelMapper.createTypeMap(Filter.class, FilterDto.class);
-		filterMap.addMappings(mapper -> {
-			mapper.map(src -> src.getId(), FilterDto::setId);
-			mapper.map(src -> src.getDescription(), FilterDto::setDescription);
-			mapper.map(src -> src.getFields(), FilterDto::setFields);
-		});
-
-		TypeMap<FieldDto, FilterField> dtoToFieldMap = modelMapper.createTypeMap(FieldDto.class, FilterField.class);
-		dtoToFieldMap.addMappings(mapper -> {
-			dtoToFieldMap.addMappings(m -> mapper.<Integer>map(src -> src.getPropertyId(), (dest, v) -> dest.getPropertyCondition().setPropertyId(v)));
-			dtoToFieldMap.addMappings(m -> mapper.<Integer>map(src -> src.getConditionId(), (dest, v) -> dest.getPropertyCondition().setConditionId(v)));
+		// FieldDto to Field entity type map
+		modelMapper.createTypeMap(FieldDto.class, FilterField.class).addMappings(mapper -> {
+			mapper.<Integer>map(src -> src.getKey(), (dest, v) -> dest.getFieldMetadata().setId(v));
+			mapper.<Integer>map(src -> src.getPropertyId(), (dest, v) -> dest.getPropertyCondition().setPropertyId(v));
+			mapper.<Integer>map(src -> src.getConditionId(), (dest, v) -> dest.getPropertyCondition().setConditionId(v));
 		});
 
 		return modelMapper;

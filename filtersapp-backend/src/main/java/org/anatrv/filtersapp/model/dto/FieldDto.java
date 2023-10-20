@@ -1,5 +1,6 @@
 package org.anatrv.filtersapp.model.dto;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
@@ -9,11 +10,10 @@ import lombok.Data;
 
 @Data
 public class FieldDto {
-    private Integer id;
+    @NotNull
+    private Integer key;
     private String value_;
     private String name;
-    private String type;
-    private Boolean required;
     private Integer propertyId;
     private Integer conditionId;
 }
