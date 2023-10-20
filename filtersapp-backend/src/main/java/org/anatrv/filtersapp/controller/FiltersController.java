@@ -10,6 +10,7 @@ import org.anatrv.filtersapp.service.FilterService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,11 +56,14 @@ public class FiltersController {
     }
 
     @PutMapping(path = "/{id}", consumes = "application/json")
-    public void updateById(Integer id, Filter filter) {
+    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED, reason = "unable to update resource, not implemented")
+    public void updateById(@PathVariable("id") Integer id, @RequestBody FilterDto filter) {
         
     }
 
-    public void deleteById(@PathVariable("id") Integer id, @RequestBody FilterDto filterDto) {
+    @DeleteMapping(path = "/{id}")
+    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED, reason = "unable to delete resource, not implemented")
+    public void deleteById(@PathVariable("id") Integer id) {
 
     }
 
