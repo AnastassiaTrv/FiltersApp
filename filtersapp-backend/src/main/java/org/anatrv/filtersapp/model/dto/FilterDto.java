@@ -2,6 +2,7 @@ package org.anatrv.filtersapp.model.dto;
 
 import java.util.Collection;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
 /**
@@ -13,5 +14,7 @@ import lombok.Data;
 public class FilterDto {
     private Integer id;
     private String description;
+
+    @NotEmpty
     private Collection<FieldDto> fields;
 }

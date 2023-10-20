@@ -37,6 +37,12 @@ public class FiltersappApplication {
 			mapper.map(src -> src.getFields(), FilterDto::setFields);
 		});
 
+		TypeMap<FieldDto, FilterField> dtoToFieldMap = modelMapper.createTypeMap(FieldDto.class, FilterField.class);
+		dtoToFieldMap.addMappings(mapper -> {
+			dtoToFieldMap.addMappings(m -> mapper.<Integer>map(src -> src.getPropertyId(), (dest, v) -> dest.getPropertyCondition().setPropertyId(v)));
+			dtoToFieldMap.addMappings(m -> mapper.<Integer>map(src -> src.getConditionId(), (dest, v) -> dest.getPropertyCondition().setConditionId(v)));
+		});
+
 		return modelMapper;
 	}
 

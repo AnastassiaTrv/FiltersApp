@@ -21,5 +21,15 @@ public class FilterService {
     public Optional<Filter> getOneById(Integer id) {
         return filterRepository.findById(id);
     }
+
+    public void update(Filter filter) {
+        filterRepository.save(filter);
+    }
+
+    public Integer createFilter(Filter filter) {
+        // todo...
+        
+        return 1;
+    }
     
 }
