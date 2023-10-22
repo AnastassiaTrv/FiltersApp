@@ -26,10 +26,8 @@ public class FilterService {
         filterRepository.save(filter);
     }
 
-    public Integer createFilter(Filter filter) {
-        // todo...
-        
-        return 1;
+    public Filter createFilter(Filter filter) {
+        return filterRepository.save(filter);
     }
     
 }

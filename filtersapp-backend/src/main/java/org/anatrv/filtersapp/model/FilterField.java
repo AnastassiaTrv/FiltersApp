@@ -4,23 +4,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import lombok.Data;
 
 @Data
 @Entity
 public class FilterField {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "field_generator")
+    @SequenceGenerator(name = "field_generator", sequenceName = "field_seq", allocationSize = 1)
     private Integer id;
     private String value_;
-
-    @ManyToOne
-    @JoinColumn(name = "metadataId")
-    private FieldMetadata fieldMetadata;
-
-    @ManyToOne
-    @JoinColumn(name = "propertyCondition_id")
-    private PropertyCondition propertyCondition;
+    private Integer propertyId;
+    private Integer conditionId;
 }

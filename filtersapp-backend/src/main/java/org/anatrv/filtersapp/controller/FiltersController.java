@@ -7,11 +7,14 @@ import org.anatrv.filtersapp.exception.ResourceNotFoundException;
 import org.anatrv.filtersapp.model.Filter;
 import org.anatrv.filtersapp.model.dto.FilterDto;
 import org.anatrv.filtersapp.service.FilterService;
+import org.anatrv.filtersapp.service.FilterValidationService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,7 +35,15 @@ public class FiltersController {
     private FilterService filterService;
 
     @Autowired
+    private FilterValidationService validationService;
+
+    @Autowired
     private ModelMapper mapper;
+
+    @InitBinder(value = "filterDto")
+    void initStudentValidator(WebDataBinder binder) {
+        binder.setValidator(validationService);
+    }
 
     @GetMapping
     public List<FilterDto> getAll() {
@@ -51,8 +62,9 @@ public class FiltersController {
 
     @PostMapping(consumes = "application/json")
     @ResponseStatus(HttpStatus.CREATED)
-    public Integer create(@Valid @RequestBody FilterDto filterDto) {
-        return filterService.createFilter(convertToEntity(filterDto));
+    public FilterDto create(@Valid @RequestBody FilterDto filterDto) {
+        Filter created = filterService.createFilter(convertToEntity(filterDto));
+        return convertToDto(created);
     }
 
     @PutMapping(path = "/{id}", consumes = "application/json")

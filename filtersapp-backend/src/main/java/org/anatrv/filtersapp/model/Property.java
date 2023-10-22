@@ -6,10 +6,9 @@ import lombok.Data;
 
 @Data
 @Entity
-public class FieldMetadata {
+public class Property {
     @Id
     private Integer id;
     private String name;
-    private String type;
-    private Boolean required;
+    private String dataType;
 }

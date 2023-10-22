@@ -1,22 +1,15 @@
 create table if not exists Filter (
     id identity,
-    description varchar(50) null
-);
-
-create table if not exists Field_Metadata (
-    id identity,
-    group_id bigint not null,
     name varchar(50) not null,
-    type ENUM('text', 'selection', 'multi_value'),
-    required boolean not null default false
+    some_optional_value varchar(50) null
 );
 
 create table if not exists Filter_Field (
     id identity,
-    filter_id bigint not null,
-    metadata_id bigint not null,
-    property_condition_id bigint null,
-    value_ varchar(50) null
+    filter_id bigint null,
+    property_id bigint not null,
+    condition_id bigint not null,
+    value_ varchar(50) not null
 );
 
 create table if not exists Property (
@@ -36,8 +29,11 @@ create table if not exists Property_Condition (
     condition_id bigint not null
 );
 
+create sequence if not exists filter_seq start with 3;
+create sequence if not exists field_seq start with 7;
+
 alter table Filter_Field add foreign key (filter_id) references Filter(id);
-alter table Filter_Field add foreign key (metadata_id) references Field_Metadata(id);
-alter table Filter_Field add foreign key (property_condition_id) references Property_Condition(id);
+alter table Filter_Field add foreign key (property_id) references Property(id);
+alter table Filter_Field add foreign key (condition_id) references Condition(id);
 alter table Property_Condition add foreign key (property_id) references Property(id);
 alter table Property_Condition add foreign key (condition_id) references Condition(id);
