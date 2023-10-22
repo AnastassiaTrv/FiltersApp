@@ -1,0 +1,71 @@
+<form class="row g-3 align-items-center">
+    <div class="col-md-4">
+      <label for="name" class="form-label">Filter name</label>
+      <input type="text" class="form-control" id="name">
+    </div>
+    <div class="col-12">
+        <label class="form-label">Criteria</label>
+        <div class="row">
+            <div class="col">
+                <select class="form-select">
+                    <option value="1" selected>Amount</option>
+                    <option value="2">Title</option>
+                    <option value="3">Date</option>
+                </select>
+            </div>
+            <div class="col">
+                <select class="form-select">
+                    <option value="1" selected>More</option>
+                    <option value="2">Less</option>
+                    <option value="3">Equal</option>
+                </select>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" placeholder="4">
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-sm-2 d-grid">
+                <button type="button" class="btn btn-outline-primary btn-block">Add row</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+      <label for="inputAddress2" class="form-label">Some static field</label>
+      <div class="row">
+        <div class="col">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  A
+                </label>
+              </div>
+        </div>
+        <div class="col">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  B
+                </label>
+              </div>
+        </div>
+        <div class="col">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  C
+                </label>
+              </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-2">
+        <div class="col-sm-2 d-grid">
+            <button type="button" class="btn btn-secondary btn-block">Close</button>
+        </div>
+        <div class="col-sm-2 d-grid">
+            <button type="button" class="btn btn-primary btn-block">Save</button>
+        </div>
+    </div>
+  </form>
