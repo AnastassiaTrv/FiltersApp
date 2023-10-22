@@ -41,7 +41,7 @@ public class FiltersController {
     private ModelMapper mapper;
 
     @InitBinder(value = "filterDto")
-    void initStudentValidator(WebDataBinder binder) {
+    void initFiltertValidator(WebDataBinder binder) {
         binder.setValidator(validationService);
     }
 
