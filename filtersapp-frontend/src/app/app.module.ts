@@ -9,13 +9,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterDescriptionPipe } from './pipes/filter-description.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     FiltersListComponent,
     CreateFilterViewComponent,
-    AddFilterBtnComponent
+    AddFilterBtnComponent,
+    FilterDescriptionPipe
   ],
   imports: [
     BrowserModule,

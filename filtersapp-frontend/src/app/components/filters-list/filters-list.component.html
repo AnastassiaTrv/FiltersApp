@@ -1,4 +1,4 @@
-<div class="p-2">Exisitng filters</div>
-<mat-list role = "list">
-    <mat-list-item *ngFor="let filter of filters" role = "listitem">{{filter.id}}, {{filter.name}}, {{filter.someOptionalValue}}</mat-list-item>
- </mat-list>
+<div class="p-2">Saved filters</div>
+<ul class="list-group">
+    <li class="list-group-item" *ngFor="let filter of filters">{{filter | filterDescription}}</li>
+</ul>

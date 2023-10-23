@@ -38,10 +38,10 @@ export class CreateFilterViewComponent implements OnInit {
           name: 'Title'
         },
         conditions: [
+          { id: 3, rule: 'Equal'},
           { id: 4, rule: 'Starts with'},
           { id: 5, rule: 'Ends with'},
-          { id: 6, rule: 'Contains'},
-          { id: 7, rule: 'Equal'},
+          { id: 6, rule: 'Contains'}
         ]
       },
       {
@@ -50,9 +50,9 @@ export class CreateFilterViewComponent implements OnInit {
           name: 'Date'
         },
         conditions: [
-          { id: 8, rule: 'From'},
-          { id: 9, rule: 'Before'},
-          { id: 10, rule: 'Equal'},
+          { id: 3, rule: 'Equal'},
+          { id: 7, rule: 'From'},
+          { id: 8, rule: 'Before'}
         ]
       }
     ]
