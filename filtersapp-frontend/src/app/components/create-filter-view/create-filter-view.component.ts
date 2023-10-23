@@ -3,6 +3,7 @@ import { Condition } from 'src/app/model/Condition';
 import { Filter } from 'src/app/model/Filter';
 import { FilterField } from 'src/app/model/FilterField';
 import { PropertyConditions } from 'src/app/model/PropertyCondition';
+import { FilterService } from 'src/app/service/filter.service';
 
 @Component({
   selector: 'app-create-filter-view',
@@ -14,7 +15,7 @@ export class CreateFilterViewComponent implements OnInit {
   filter: Filter;
   propertyConditionsList: PropertyConditions[];
 
-  constructor() { }
+  constructor(private filterService: FilterService) { }
 
   ngOnInit() {
     this.filter = new Filter();
@@ -77,6 +78,10 @@ export class CreateFilterViewComponent implements OnInit {
 
   loadPropertyConditions(propertyId: number): Condition[] {
     return this.propertyConditionsList.find(elem => elem.property.id === propertyId).conditions;
+  }
+
+  saveFilter() {
+    this.filterService.saveFilter(this.filter).subscribe();
   }
 
 }

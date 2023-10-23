@@ -11,10 +11,10 @@ export class FilterService {
   constructor(private http: HttpClient) { }
 
   getAllFilters(){
-    return this.http.get(Constants.API_ENDPOINT_GET_FILTERS);
+    return this.http.get(Constants.API_ENDPOINT_FILTERS);
   }
 
-  createFilter(f: Filter) {
-
+  saveFilter(filter: Filter) {
+    return this.http.post(Constants.API_ENDPOINT_FILTERS, filter)
   }
 }
