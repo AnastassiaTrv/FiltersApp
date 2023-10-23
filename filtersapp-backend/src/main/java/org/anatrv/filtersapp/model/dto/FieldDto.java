@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class FieldDto {
     @NotNull
-    private String value_;
+    private String value;
 
     @NotNull
     private Integer propertyId;

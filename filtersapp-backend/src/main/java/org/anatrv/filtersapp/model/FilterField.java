@@ -1,5 +1,6 @@
 package org.anatrv.filtersapp.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,7 +15,9 @@ public class FilterField {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "field_generator")
     @SequenceGenerator(name = "field_generator", sequenceName = "field_seq", allocationSize = 1)
     private Integer id;
-    private String value_;
+
+    @Column(name = "value_")
+    private String value;
     private Integer propertyId;
     private Integer conditionId;
 }
