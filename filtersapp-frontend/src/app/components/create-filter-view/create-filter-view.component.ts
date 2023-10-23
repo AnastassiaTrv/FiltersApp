@@ -20,6 +20,7 @@ export class CreateFilterViewComponent implements OnInit {
   ngOnInit() {
     this.filter = new Filter();
     this.filter.fields = [ this.createDefaultField() ];
+    this.filter.someOptionalValue = 'Winter';
     this.propertyConditionsList = [
       {
         property: {

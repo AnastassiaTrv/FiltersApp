@@ -7,7 +7,7 @@ import { CreateFilterViewComponent } from './components/create-filter-view/creat
 import { AddFilterBtnComponent } from './components/add-filter-btn/add-filter-btn.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatSelectModule } from '@angular/material';
+import { MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatRadioModule, MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterDescriptionPipe } from './pipes/filter-description.pipe';
 
@@ -28,6 +28,7 @@ import { FilterDescriptionPipe } from './pipes/filter-description.pipe';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
+    MatRadioModule,
     FormsModule,
     ReactiveFormsModule
   ],

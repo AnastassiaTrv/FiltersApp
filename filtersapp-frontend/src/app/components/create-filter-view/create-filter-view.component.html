@@ -1,12 +1,12 @@
 <form class="row g-3 align-items-center">
-    <label class="form-label">Name</label>
+    <label class="form-label">Name:</label>
     <div class="col-md-4">
         <mat-form-field appearance="">
             <input [(ngModel)] = "filter.name" matInput value="" name="filterName">
         </mat-form-field>
     </div>
     <div class="col-12">
-        <label class="form-label">Criteria</label>
+        <label class="form-label">Criteria:</label>
         <div class="row" *ngFor="let field of filter.fields; index as i">
             <div class="col">
                 <mat-form-field>
@@ -42,35 +42,17 @@
         </div>
     </div>
     <div class="col-md-4">
-      <label for="inputAddress2" class="form-label">Some static field</label>
+      <label for="inputAddress2" class="form-label">Season:</label>
       <div class="row">
         <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  A
-                </label>
-            </div>
-        </div>
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                <label class="form-check-label" for="flexRadioDefault1">
-                  B
-                </label>
-              </div>
-        </div>
-        <div class="col">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                <label class="form-check-label" for="flexRadioDefault1">
-                  C
-                </label>
-              </div>
+            <mat-radio-group class = "tp-radio-group" [(ngModel)] = "filter.someOptionalValue" name="optional">
+                <mat-radio-button class = "tp-radio-button" *ngFor = "let elem of ['Winter', 'Spring', 'Summer', 'Autumn']" [value] = "elem">
+                   {{elem}}
+                </mat-radio-button>
+             </mat-radio-group>
         </div>
       </div>
     </div>
-
     <div class="row g-2">
         <div class="col-sm-2 d-grid">
             <button type="button" class="btn btn-secondary btn-block">Close</button>
