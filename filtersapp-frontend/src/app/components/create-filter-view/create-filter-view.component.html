@@ -1,32 +1,43 @@
 <form class="row g-3 align-items-center">
+    <label class="form-label">Name</label>
     <div class="col-md-4">
-      <label for="name" class="form-label">Filter name</label>
-      <input type="text" class="form-control" id="name">
+        <mat-form-field appearance="">
+            <input [(ngModel)] = "filter.name" matInput value="" name="filterName">
+        </mat-form-field>
     </div>
     <div class="col-12">
         <label class="form-label">Criteria</label>
-        <div class="row">
+        <div class="row" *ngFor="let field of filter.fileds; index as i">
             <div class="col">
-                <select class="form-select">
-                    <option value="1" selected>Amount</option>
-                    <option value="2">Title</option>
-                    <option value="3">Date</option>
-                </select>
+                <mat-form-field>
+                    <mat-select [(ngModel)] = "field.propertyId" name = "property">
+                        <mat-option *ngFor = "let property of properties" [value] = "property.id">
+                            {{property.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
             <div class="col">
-                <select class="form-select">
-                    <option value="1" selected>More</option>
-                    <option value="2">Less</option>
-                    <option value="3">Equal</option>
-                </select>
+                <mat-form-field>
+                    <mat-select [(ngModel)] = "field.conditionId" name = "condition">
+                        <mat-option *ngFor = "let condition of conditions" [value] = "condition.id">
+                            {{condition.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
             </div>
             <div class="col">
-                <input type="text" class="form-control" placeholder="4">
+                <mat-form-field appearance="">
+                    <input [(ngModel)] = "field.value" matInput [value] ="field.value" name="fieldValue">
+                </mat-form-field>
+            </div>
+            <div class="col">
+                <button mat-mini-fab (click) = "removeField(i)">-</button>
             </div>
         </div>
-        <div class="row mt-2">
-            <div class="col-sm-2 d-grid">
-                <button type="button" class="btn btn-outline-primary btn-block">Add row</button>
+        <div class="row">
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-outline-primary btn-block" (click) = "addNewField()">Add row</button>
             </div>
         </div>
     </div>
@@ -39,7 +50,7 @@
                 <label class="form-check-label" for="flexRadioDefault1">
                   A
                 </label>
-              </div>
+            </div>
         </div>
         <div class="col">
             <div class="form-check">

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Filter } from '../model/Filter';
 import { HttpClient } from '@angular/common/http';
-import { error } from 'console';
 import { Constants } from '../config/constants';
 
 @Injectable({
