@@ -23,13 +23,13 @@ insert into Property_Condition (id, property_id, condition_id) values
 (1, 1, 1),
 (2, 1, 2),
 (3, 1, 3),
-(4, 2, 3),
-(5, 2, 4),
-(6, 2, 5),
-(7, 2, 6),
-(8, 3, 3),
-(9, 3, 7),
-(10, 3, 8);
+(4, 2, 4),
+(5, 2, 5),
+(6, 2, 6),
+(7, 2, 3),
+(8, 3, 7),
+(9, 3, 8),
+(10, 3, 3);
 
 insert into Filter (id, name, some_optional_value) values
 (1, 'Test filter 1', 'A'),

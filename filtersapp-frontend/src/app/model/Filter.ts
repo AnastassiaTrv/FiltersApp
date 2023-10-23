@@ -4,5 +4,5 @@ export class Filter {
     id: number
     name: string;
     someOptionalValue: string;
-    fileds: FilterField[];
+    fields: FilterField[];
 }
