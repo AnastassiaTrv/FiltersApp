@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Condition } from 'src/app/model/Condition';
 import { Filter } from 'src/app/model/Filter';
 import { FilterField } from 'src/app/model/FilterField';
@@ -12,8 +12,11 @@ import { FilterService } from 'src/app/service/filter.service';
 })
 export class CreateFilterViewComponent implements OnInit {
 
+  @Output() onFilterCreated = new EventEmitter<void>();
+
   filter: Filter;
   propertyConditionsList: PropertyConditions[];
+  errorMsg: string;
 
   constructor(private filterService: FilterService) { }
 
@@ -64,7 +67,7 @@ export class CreateFilterViewComponent implements OnInit {
       id: null,
       propertyId: 1,
       conditionId: 1,
-      value: 'test'
+      value: '123'
     }
     return field;
   }
@@ -82,7 +85,15 @@ export class CreateFilterViewComponent implements OnInit {
   }
 
   saveFilter() {
-    this.filterService.saveFilter(this.filter).subscribe();
+    this.filterService.saveFilter(this.filter)
+    .subscribe(
+      saved => {
+        this.errorMsg = null;
+        this.onFilterCreated.emit();
+      },
+      e => {
+        this.errorMsg = e.error.message;
+      });
   }
 
 }

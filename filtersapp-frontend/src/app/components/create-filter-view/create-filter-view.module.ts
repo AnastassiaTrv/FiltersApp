@@ -4,6 +4,7 @@ import { CreateFilterViewComponent } from './create-filter-view.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatRadioModule, MatSelectModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ErrorMessageModule } from '../error-message/error-message.module';
 
 
 
@@ -19,7 +20,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatRadioModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ErrorMessageModule
   ],
   exports: [
     CreateFilterViewComponent

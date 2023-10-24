@@ -61,4 +61,5 @@
             <button type="button" class="btn btn-primary btn-block" (click) = "saveFilter()">Save</button>
         </div>
     </div>
+    <app-error-message *ngIf="errorMsg" [message]="errorMsg"></app-error-message>
   </form>

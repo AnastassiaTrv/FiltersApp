@@ -15,11 +15,11 @@ import lombok.Data;
 public class FilterDto {
     private Integer id;
 
-    @NotBlank
+    @NotBlank(message = "name should not be blank")
     private String name;
 
     private String someOptionalValue;
 
-    @NotEmpty
+    @NotEmpty(message = "fields cannot be empty")
     private Collection<@Valid FieldDto> fields;
 }

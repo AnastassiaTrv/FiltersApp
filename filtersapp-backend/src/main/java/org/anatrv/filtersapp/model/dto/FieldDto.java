@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 public class FieldDto {
-    @NotNull
+    @NotNull(message = "value cannot be null")
     private String value;
 
-    @NotNull
+    @NotNull(message = "property should be selected")
     private Integer propertyId;
 
-    @NotNull
+    @NotNull(message = "conditionId should be selected")
     private Integer conditionId;
 }

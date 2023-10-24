@@ -14,6 +14,10 @@ export class FiltersListComponent implements OnInit {
   constructor(private filterService: FilterService) { }
 
   ngOnInit() {
+    this.load();
+  }
+
+  load() {
     this.filterService.getAllFilters()
     .subscribe(
       filters => {
