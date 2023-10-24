@@ -1,4 +1,4 @@
-<div class="p-2">Saved filters</div>
+<div class="p-2">Saved filters: {{getFiltersCount()}}</div>
 <ul class="list-group">
     <li class="list-group-item" *ngFor="let filter of filters">{{filter | filterDescription}}</li>
 </ul>

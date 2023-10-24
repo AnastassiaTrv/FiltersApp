@@ -2,35 +2,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { FiltersListComponent } from './components/filters-list/filters-list.component';
-import { CreateFilterViewComponent } from './components/create-filter-view/create-filter-view.component';
-import { AddFilterBtnComponent } from './components/add-filter-btn/add-filter-btn.component';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatInputModule, MatListModule, MatRadioModule, MatSelectModule } from '@angular/material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FilterDescriptionPipe } from './pipes/filter-description.pipe';
+import { FiltersListModule } from './components/filters-list/filters-list.module';
+import { CreateFilterViewModule } from './components/create-filter-view/create-filter-view.module';
+import { AddFilterBtnModule } from './components/add-filter-btn/add-filter-btn.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FiltersListComponent,
-    CreateFilterViewComponent,
-    AddFilterBtnComponent,
-    FilterDescriptionPipe
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    MatInputModule,
-    MatListModule,
-    MatSelectModule,
-    MatButtonModule,
-    MatIconModule,
-    MatRadioModule,
-    FormsModule,
-    ReactiveFormsModule
+    FiltersListModule,
+    CreateFilterViewModule,
+    AddFilterBtnModule
   ],
   providers: [],
   bootstrap: [AppComponent]

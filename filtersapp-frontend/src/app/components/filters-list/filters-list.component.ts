@@ -20,8 +20,13 @@ export class FiltersListComponent implements OnInit {
         this.filters = filters;
       },
       error => {
+        this.filters = [];
         console.log(error);
       });
+  }
+
+  getFiltersCount(): number {
+    return this.filters ? this.filters.length : 0
   }
 
 }
