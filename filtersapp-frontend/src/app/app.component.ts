@@ -34,6 +34,7 @@ export class AppComponent {
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
+    dialogConfig.panelClass = 'create-filter-panel',
     dialogConfig.data = {
       onSaveSuccess: () => this.triggerFiltersListReload()
     };
