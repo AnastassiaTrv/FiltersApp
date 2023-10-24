@@ -13,6 +13,7 @@ import { FilterService } from 'src/app/service/filter.service';
 export class CreateFilterViewComponent implements OnInit {
 
   @Output() onFilterCreated = new EventEmitter<void>();
+  @Output() onCloseBtnClick = new EventEmitter<void>();
 
   filter: Filter;
   propertyConditionsList: PropertyConditions[];
@@ -94,6 +95,10 @@ export class CreateFilterViewComponent implements OnInit {
       e => {
         this.errorMsg = e.error.message;
       });
+  }
+
+  closeView() {
+    this.onCloseBtnClick.emit();
   }
 
 }

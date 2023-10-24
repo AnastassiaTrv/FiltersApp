@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FiltersListModule } from './components/filters-list/filters-list.module';
 import { CreateFilterViewModule } from './components/create-filter-view/create-filter-view.module';
 import { AddFilterBtnModule } from './components/add-filter-btn/add-filter-btn.module';
+import { MatDialogModule } from '@angular/material';
+import { CreateFilterDialogModule } from './components/create-filter-dialog/create-filter-dialog.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { AddFilterBtnModule } from './components/add-filter-btn/add-filter-btn.m
     HttpClientModule,
     FiltersListModule,
     CreateFilterViewModule,
-    AddFilterBtnModule
+    AddFilterBtnModule,
+    MatDialogModule,
+    CreateFilterDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

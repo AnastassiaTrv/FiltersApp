@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-add-filter-btn',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddFilterBtnComponent implements OnInit {
 
+  @Input() disabled: boolean;
+  @Output() onAddBtnClick = new EventEmitter<boolean>();
+
+  openAsModal = false;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  emitAddBtnClicked() {
+    this.onAddBtnClick.emit(this.openAsModal);
   }
 
 }

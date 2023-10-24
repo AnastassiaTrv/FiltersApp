@@ -1,7 +1,13 @@
 <div class="container">
   <div class="d-grid gap-3 pt-5">
-    <app-add-filter-btn></app-add-filter-btn>
-    <app-create-filter-view (onFilterCreated)="triggerFiltersListReload()"></app-create-filter-view>
+    <app-add-filter-btn 
+      [disabled] = "showCreateView" 
+      (onAddBtnClick) = "openCreateView($event)">
+    </app-add-filter-btn>
+    <app-create-filter-view *ngIf = "showCreateView"
+      (onFilterCreated) = "triggerFiltersListReload()" 
+      (onCloseBtnClick) = "hideCreateView()">
+    </app-create-filter-view>
     <app-filters-list></app-filters-list>
   </div>
 </div>
