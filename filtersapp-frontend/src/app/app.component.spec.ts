@@ -1,12 +1,22 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { MockComponents } from 'ng-mocks';
+import { AddFilterBtnComponent } from './components/add-filter-btn/add-filter-btn.component';
+import { CreateFilterViewComponent } from './components/create-filter-view/create-filter-view.component';
+import { FiltersListComponent } from './components/filters-list/filters-list.component';
+import { MatDialog } from '@angular/material';
 
 describe('AppComponent', () => {
+  const matDialog = jasmine.createSpyObj('MatDialog', ['open']);
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, MockComponents(AddFilterBtnComponent, CreateFilterViewComponent, FiltersListComponent)
       ],
+      providers: [
+        { provide: MatDialog, useValue: matDialog }
+      ]
     }).compileComponents();
   }));
 
@@ -14,18 +24,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'filtersapp-frontend'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('filtersapp-frontend');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('filtersapp-frontend app is running!');
   });
 });

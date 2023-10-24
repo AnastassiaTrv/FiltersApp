@@ -10,7 +10,7 @@ export class FilterService {
 
   constructor(private http: HttpClient) { }
 
-  getAllFilters(){
+  getAllFilters() {
     return this.http.get(Constants.API_ENDPOINT_FILTERS);
   }
 

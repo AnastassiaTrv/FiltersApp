@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddFilterBtnComponent } from './add-filter-btn.component';
+import { MatButtonModule, MatCheckbox, MatCheckboxModule } from '@angular/material';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('AddFilterBtnComponent', () => {
   let component: AddFilterBtnComponent;
@@ -8,7 +11,12 @@ describe('AddFilterBtnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddFilterBtnComponent ]
+      declarations: [ AddFilterBtnComponent ],
+      imports: [
+        MatCheckboxModule,
+        MatButtonModule,
+        FormsModule
+      ]
     })
     .compileComponents();
   }));
