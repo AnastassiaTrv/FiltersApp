@@ -7,6 +7,7 @@
     </div>
     <div class="col-12">
         <label class="form-label">Criteria:</label>
+        <!--Candidate for a dictinct component-->
         <div class="row" *ngFor="let field of filter.fields; index as i">
             <div class="col">
                 <mat-form-field>
@@ -27,14 +28,23 @@
                 </mat-form-field>
             </div>
             <div class="col">
-                <mat-form-field appearance="">
+                <mat-form-field appearance="" *ngIf = "!isDateProperty(field.propertyId)">
                     <input [(ngModel)] = "field.value" matInput name="field{{i}}_value">
                 </mat-form-field>
+                <mat-form-field *ngIf = "isDateProperty(field.propertyId)" >
+                    <input matInput
+                        [matDatepicker] = "picker"
+                        (dateChange) = "formatAndSetDateValue(field, $event)"
+                        matInput name="field{{i}}_value">
+                    <mat-datepicker-toggle matSuffix [for] = "picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                 </mat-form-field>
             </div>
             <div class="col">
                 <button mat-mini-fab (click) = "removeField(i)">-</button>
             </div>
         </div>
+        <!--End-->
         <div class="row">
             <div class="col-sm-2">
                 <button type="button" class="btn btn-outline-primary btn-block" (click) = "addNewField()">Add row</button>

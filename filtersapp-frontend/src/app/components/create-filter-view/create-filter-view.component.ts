@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { format } from 'date-fns';
 import { Condition } from 'src/app/model/Condition';
 import { Filter } from 'src/app/model/Filter';
 import { FilterField } from 'src/app/model/FilterField';
@@ -29,7 +30,8 @@ export class CreateFilterViewComponent implements OnInit {
       {
         property: {
           id: 1,
-          name: 'Amount'
+          name: 'Amount',
+          dataType: 'number'
         },
         conditions: [
           { id: 1, rule: 'More'},
@@ -40,7 +42,8 @@ export class CreateFilterViewComponent implements OnInit {
       {
         property: {
           id: 2,
-          name: 'Title'
+          name: 'Title',
+          dataType: 'text'
         },
         conditions: [
           { id: 3, rule: 'Equal'},
@@ -52,7 +55,8 @@ export class CreateFilterViewComponent implements OnInit {
       {
         property: {
           id: 3,
-          name: 'Date'
+          name: 'Date',
+          dataType: 'date'
         },
         conditions: [
           { id: 3, rule: 'Equal'},
@@ -82,7 +86,19 @@ export class CreateFilterViewComponent implements OnInit {
   }
 
   loadPropertyConditions(propertyId: number): Condition[] {
-    return this.propertyConditionsList.find(elem => elem.property.id === propertyId).conditions;
+    return this.findPropertyConditionsById(propertyId).conditions;
+  }
+
+  isDateProperty(propertyId: number) {
+    return this.findPropertyConditionsById(propertyId).property.dataType === 'date';
+  }
+
+  findPropertyConditionsById(propertyId: number): PropertyConditions  {
+    return this.propertyConditionsList.find(elem => elem.property.id === propertyId);
+  }
+
+  formatAndSetDateValue(field: FilterField, date: any) {
+    field.value = format(date.value, 'yyyy-MM-dd');
   }
 
   saveFilter() {
