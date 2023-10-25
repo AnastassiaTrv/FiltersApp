@@ -56,6 +56,7 @@
       <div class="row">
         <div class="col">
             <mat-radio-group class = "tp-radio-group" [(ngModel)] = "filter.someOptionalValue" name="optional">
+                <!--I've just hardcoded this list here for the sake of simplicity, but in the real app better store it in DB -->
                 <mat-radio-button class = "tp-radio-button" *ngFor = "let elem of ['Winter', 'Spring', 'Summer', 'Autumn']" [value] = "elem">
                    {{elem}}
                 </mat-radio-button>
