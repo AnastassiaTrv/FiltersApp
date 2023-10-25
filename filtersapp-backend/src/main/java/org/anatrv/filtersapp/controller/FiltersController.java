@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import static java.lang.String.format;
+
 import jakarta.validation.Valid;
 import lombok.Data;
 
@@ -58,7 +60,7 @@ public class FiltersController {
     public FilterDto getById(@PathVariable("id") Integer id) {
         return filterService.getOneById(id)
         .map(this::convertToDto)
-        .orElseThrow( () -> new ResourceNotFoundException());
+        .orElseThrow(() -> new ResourceNotFoundException(format("filter %s not found", id)));
     }
 
     @PostMapping(consumes = "application/json")
@@ -69,13 +71,13 @@ public class FiltersController {
     }
 
     @PutMapping(path = "/{id}", consumes = "application/json")
-    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED, reason = "unable to update resource, not implemented")
+    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED)
     public void updateById(@PathVariable("id") Integer id, @RequestBody FilterDto filter) {
         
     }
 
     @DeleteMapping(path = "/{id}")
-    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED, reason = "unable to delete resource, not implemented")
+    @ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED)
     public void deleteById(@PathVariable("id") Integer id) {
 
     }

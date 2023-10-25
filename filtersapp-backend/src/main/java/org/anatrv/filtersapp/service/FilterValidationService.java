@@ -1,6 +1,5 @@
 package org.anatrv.filtersapp.service;
 
-import org.anatrv.filtersapp.exception.FilterValidationException;
 import org.anatrv.filtersapp.model.Property;
 import org.anatrv.filtersapp.model.dto.FieldDto;
 import org.anatrv.filtersapp.model.dto.FilterDto;
@@ -16,7 +15,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.lang.String.format;
 
@@ -39,6 +37,7 @@ public class FilterValidationService implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
+        // this validation will be performed automatically by spring when FilterDto enters application
         FilterDto filterDto = (FilterDto) target;
         validatorAdapter.validate(filterDto, errors);
 
@@ -62,14 +61,6 @@ public class FilterValidationService implements Validator {
                     errors.reject("invalid.property.datatype", msg);
                 }
             }
-        }
-
-        if (errors.hasErrors()) {
-            String errorMsg = errors.getAllErrors().stream()
-            .map(e -> e.getDefaultMessage())
-            .collect(Collectors.joining(", "));
-
-            throw new FilterValidationException(errorMsg);
         }
     }
 
