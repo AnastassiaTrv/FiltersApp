@@ -17,68 +17,37 @@ export class CreateFilterViewComponent implements OnInit {
   @Output() onCloseBtnClick = new EventEmitter<void>();
 
   filter: Filter;
-  propertyConditionsList: PropertyConditions[];
+  propertyConditionsList: any;
   errorMsg: string;
 
   constructor(private filterService: FilterService) { }
 
   ngOnInit() {
     this.filter = new Filter();
-    this.filter.fields = [ this.createDefaultField() ];
     this.filter.someOptionalValue = 'Winter';
-    this.propertyConditionsList = [
-      {
-        property: {
-          id: 1,
-          name: 'Amount',
-          dataType: 'number'
-        },
-        conditions: [
-          { id: 1, rule: 'More'},
-          { id: 2, rule: 'Less'},
-          { id: 3, rule: 'Equal'},
-        ]
+    this.filter.fields = [];
+    this.fetchPropertyConditions();
+  }
+
+  fetchPropertyConditions() {
+    this.filterService.getFilterPropertyConditions()
+    .subscribe(
+      pcList => {
+        this.propertyConditionsList = pcList;
+        this.addDefaultField();
       },
-      {
-        property: {
-          id: 2,
-          name: 'Title',
-          dataType: 'text'
-        },
-        conditions: [
-          { id: 3, rule: 'Equal'},
-          { id: 4, rule: 'Starts with'},
-          { id: 5, rule: 'Ends with'},
-          { id: 6, rule: 'Contains'}
-        ]
-      },
-      {
-        property: {
-          id: 3,
-          name: 'Date',
-          dataType: 'date'
-        },
-        conditions: [
-          { id: 3, rule: 'Equal'},
-          { id: 7, rule: 'From'},
-          { id: 8, rule: 'Before'}
-        ]
-      }
-    ]
+      error => {
+        this.propertyConditionsList = [];
+        console.log(error);
+      });
+  }
+
+  addDefaultField() {
+    this.filter.fields.push(this.createDefaultField());
   }
 
   createDefaultField(): FilterField {
-    const field = {
-      id: null,
-      propertyId: 1,
-      conditionId: 1,
-      value: '123'
-    }
-    return field;
-  }
-
-  addNewField() {
-    this.filter.fields.push(this.createDefaultField());
+    return { propertyId: 1 }; // first property should be preselected
   }
 
   removeField(index: number) {

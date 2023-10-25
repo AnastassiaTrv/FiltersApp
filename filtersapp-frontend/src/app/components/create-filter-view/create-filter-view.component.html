@@ -5,7 +5,7 @@
             <input [(ngModel)] = "filter.name" matInput value="" name="filterName">
         </mat-form-field>
     </div>
-    <div class="col-12">
+    <div class="col-12" *ngIf = "propertyConditionsList">
         <label class="form-label">Criteria:</label>
         <!--Candidate for a dictinct component-->
         <div class="row" *ngFor="let field of filter.fields; index as i">
@@ -47,7 +47,7 @@
         <!--End-->
         <div class="row">
             <div class="col-sm-2">
-                <button type="button" class="btn btn-outline-primary btn-block" (click) = "addNewField()">Add row</button>
+                <button type="button" class="btn btn-outline-primary btn-block" (click) = "addDefaultField()">Add row</button>
             </div>
         </div>
     </div>

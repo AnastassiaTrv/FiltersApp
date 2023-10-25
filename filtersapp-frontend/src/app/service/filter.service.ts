@@ -17,4 +17,8 @@ export class FilterService {
   saveFilter(filter: Filter) {
     return this.http.post(Constants.API_ENDPOINT_FILTERS, filter)
   }
+
+  getFilterPropertyConditions() {
+    return this.http.get(Constants.API_ENDPOINT_PROPERTY_CONDITIONS);
+  }
 }
