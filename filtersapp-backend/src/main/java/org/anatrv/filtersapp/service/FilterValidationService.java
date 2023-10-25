@@ -58,7 +58,7 @@ public class FilterValidationService implements Validator {
 
                 } else if (!isValid(field, property.getDataType())) {
                     String msg = format("property '%s' has invalid value '%s'", property.getName(), field.getValue());
-                    errors.reject("invalid.property.datatype", msg);
+                    errors.reject("invalid.property.value", msg);
                 }
             }
         }
