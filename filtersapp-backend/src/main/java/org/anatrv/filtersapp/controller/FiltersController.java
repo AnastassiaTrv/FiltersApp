@@ -1,7 +1,6 @@
 package org.anatrv.filtersapp.controller;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.anatrv.filtersapp.exception.ResourceNotFoundException;
 import org.anatrv.filtersapp.model.Filter;
@@ -52,7 +51,7 @@ public class FiltersController {
         return filterService.getAllFilters()
         .stream()
         .map(this::convertToDto)
-        .collect(Collectors.toList());
+        .toList(); // Java 17 finally has it!
     }
 
     @GetMapping("/{id}")
