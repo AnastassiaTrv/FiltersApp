@@ -57,7 +57,7 @@ public class FilterValidationService implements Validator {
                     errors.reject("invalid.property.condition", msg);
 
                 } else if (!isValid(field, property.getDataType())) {
-                    String msg = format("property '%s' has invalid value '%s'", property.getName(), field.getValue());
+                    String msg = format("property '%s' has invalid value", property.getName());
                     errors.reject("invalid.property.value", msg);
                 }
             }
@@ -90,7 +90,7 @@ public class FilterValidationService implements Validator {
     private boolean isDate(String value, DateTimeFormatter formatter) {
        try {
             LocalDate.parse(value, formatter);
-        } catch (DateTimeParseException e) {
+        } catch (DateTimeParseException | NullPointerException e) {
             return false;
         }
         return true;

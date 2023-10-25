@@ -67,7 +67,11 @@ export class CreateFilterViewComponent implements OnInit {
   }
 
   formatAndSetDateValue(field: FilterField, date: any) {
-    field.value = format(date.value, 'yyyy-MM-dd');
+    if (!isNaN(Date.parse(date.value))) {
+      field.value = format(date.value, 'yyyy-MM-dd');
+    } else {
+      field.value = date.value; // set the wrong value and rely on backend validation
+    }
   }
 
   saveFilter() {
@@ -78,7 +82,7 @@ export class CreateFilterViewComponent implements OnInit {
         this.onFilterCreated.emit();
       },
       e => {
-        this.errorMsg = e.error.message;
+        this.errorMsg = e.error;
       });
   }
 

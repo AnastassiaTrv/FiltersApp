@@ -7,11 +7,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule, MatDatepickerModule, MatIconModule, MatInputModule, MatListModule, MatNativeDateModule, MatRadioModule, MatSelectModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { FilterService } from 'src/app/service/filter.service';
+import { Observable } from 'rxjs';
 
 describe('AddFilterComponent', () => {
   let component: CreateFilterViewComponent;
   let fixture: ComponentFixture<CreateFilterViewComponent>;
-  const filterService = jasmine.createSpyObj('FilterService', ['getAllFilters', 'saveFilter']);
+  const filterService = {
+    getFilterPropertyConditions: () => {
+      return new Observable();
+    }
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
