@@ -1,5 +1,5 @@
 # FiltersApp
-A service that allows you to create filters with different criterias. It also provides you with a list of already created filters.
+A service that allows you to create filters with different search criterias. It also provides you with a list of already created filters. These filters can after be used by any other part of a system for a different search scenarios.
 
 <p align="center">
   <img src="./demo/demo_picture.png" width="750">
