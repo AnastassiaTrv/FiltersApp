@@ -12,6 +12,7 @@ cd FiltersApp/filtersapp-backend/
 ```
 * use  ```mvnw.cmd``` for the Windows environment if you don't have maven installed
 * server default port is 8097
+* there are 2 filters records in the DB created on app startup
 * h2 in-memory DB web console url:
 ```shell
 http://localhost:8097/h2-console/
@@ -20,10 +21,10 @@ http://localhost:8097/h2-console/
 ```shell
 jdbc:h2:mem:filtersapp
 ```
-* there are 2 filters in the DB created on app startup
 
 2. Start client app:
 ```shell
+cd FiltersApp/filtersapp-frontend/
 npm install
 ng serve --open
 ```
