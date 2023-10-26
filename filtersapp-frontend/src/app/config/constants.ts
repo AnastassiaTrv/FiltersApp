@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class Constants {
-    static readonly API_BASE: string = 'http://localhost:8080/api/';
-    static readonly API_ENDPOINT_FILTERS: string = Constants.API_BASE + 'filters';
-    static readonly API_ENDPOINT_PROPERTY_CONDITIONS: string = Constants.API_BASE + 'property-conditions';
+    static readonly API_ENDPOINT_FILTERS: string = environment.apiBaseUrl + 'filters';
+    static readonly API_ENDPOINT_PROPERTY_CONDITIONS: string = environment.apiBaseUrl + 'property-conditions';
 }
